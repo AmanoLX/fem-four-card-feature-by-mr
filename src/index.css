@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,700;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*
+  ROOT STYLES
+*/
+
+:root {
+  --clr-neutral-100: hsl(0, 0%, 98%);
+  --clr-neutral-300: hsl(229, 6%, 66%);
+  --clr-neutral-600: hsl(234, 12%, 34%);
+
+  --clr-red: hsl(0, 78%, 62%);
+  --clr-cyan: hsl(180, 62%, 55%);
+  --clr-orange: hsl(34, 97%, 64%);
+  --clr-blue: hsl(212, 86%, 64%);
+
+  --ff-main: 'Poppins', sans-serif;
+  --fs-main: 0.9375rem;
+  --fw-200: 200;
+  --fw-400: 400;
+  --fw-600: 600;
+}
+
+/*
+  GLOBAL CSS RESET
+*/
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/*
+  9. Table styles
+*/
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/*
+  PROJECT CSS
+*/
+
+body {
+  background-color: var(--clr-neutral-100);
+  font-family: var(--ff-main);
+  font-size: var(--fs-main);
+  font-weight: var(--fw-400);
+  color: var(--clr-neutral-300);
+  margin: 4rem 2rem;
+}
+
+main {
+  margin-inline: auto;
+  max-width: 80em;
+}
+
+.hero {
+  margin-inline: auto;
+  max-width: 35em;
+  text-align: center;
+}
+
+.hero__title {
+  color: var(--clr-neutral-600);
+  font-size: 2rem;
+  font-weight: var(--fw-600);
+}
+
+.hero__subtitle {
+  color: var(--clr-neutral-600);
+  font-size: 2rem;
+  font-weight: var(--fw-200);
+}
+
+.hero__text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.features {
+  display: grid;
+  margin-top: 5rem;
+  gap: 2rem;
+}
+
+@media (width > 600px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width > 960px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      'start mid1 end'
+      'start mid2 end';
+  }
+
+  .feature:nth-child(1) {
+    grid-area: start;
+    align-self: center;
+  }
+
+  .feature:nth-child(2) {
+    grid-area: mid1;
+  }
+
+  .feature:nth-child(3) {
+    grid-area: mid2;
+  }
+
+  .feature:nth-child(4) {
+    grid-area: end;
+    align-self: center;
+  }
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+  position: relative;
+  gap: 2rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  box-shadow: 0 7px 18px rgba(97, 98, 158, 0.3);
+  padding: 2rem;
+  opacity: 0;
+  animation: fadeIn 2s 1 forwards;
+}
+
+.features > .feature:before {
+  content: '';
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.feature:nth-child(1):before {
+  background-color: var(--clr-cyan);
+}
+
+.feature:nth-child(2):before {
+  background-color: var(--clr-red);
+}
+
+.feature:nth-child(3):before {
+  background-color: var(--clr-orange);
+}
+
+.feature:nth-child(4):before {
+  background-color: var(--clr-blue);
+}
+
+.feature__title {
+  font-size: 1.5rem;
+  font-weight: var(--fw-600);
+  color: var(--clr-neutral-600);
+}
+
+.feature__text {
+  margin-top: 1rem;
+}
+
+.feature__icon {
+  display: flex;
+  justify-content: end;
+}
+
+.feature__icon img {
+  width: 4rem;
+  height: auto;
+}
+
+/* ANIMATION */
+
+.feature:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.feature:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.feature:nth-child(3) {
+  animation-delay: 1.5s;
+}
+
+.feature:nth-child(4) {
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
